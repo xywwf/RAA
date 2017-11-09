@@ -1,0 +1,21 @@
+
+download updata url:http://dl-wows-gc.wargaming.net/asia/patches/wows_0.6.13.0.296659_asia/wows.asia_0.6.13.0.296659_0.6.13.0.296536_client.wgpkg
+
+get version API:
+installation_id:unknow
+client patch for Metadata.xml
+client_type=ultra
+lang:game_info.xml--->localization
+metadata_version------>metadata.xml---->metadata_version
+metadata_protocol_version--->metadata.xml
+chain_id--->metadata.xml--->chain_id
+installation_id:unknow
+game_id--->game_info.xml--->id
+
+download url at -->http://dl-wows-gc.wargaming.net page
+
+http://wgus.worldofwarships.asia/api/v1/patches_chain/?protocol_version=1.3&client_type=ultra&lang=ZH_TW&metadata_version=20170606095034&metadata_protocol_version=5.5&chain_id=h15_u15&installation_id=unknow&client_current_version=0.6.12.1.292991&locale_current_version=0.6.12.1.294550&sdcontent_current_version=0.6.12.1.292991&udsound_current_version=0.6.12.1.292991&game_id=WOWS.ASIA.PRODUCTION
+
+http://wgus.worldofwarships.asia/api/v1/patches_chain/?protocol_version=1.3&client_type=ultra&lang=ZH_TW&metadata_version=20170606095034&metadata_protocol_version=5.0&chain_id=h15_u15&installation_id=unknow&client_current_version=0.6.12.1.292991&locale_current_version=0.6.12.1.294550&sdcontent_current_version=0.6.12.1.292991&udsound_current_version=0.6.12.1.292991&game_id=WOWS.ASIA.PRODUCTION
+
+http://wgus.worldofwarships.asia/api/v1/patches_chain/?protocol_version=1.3&client_type=ultra&lang=ZH_TW&metadata_version=20170606095034&metadata_protocol_version=5.0&chain_id=h15_u15&installation_id=unknow&client_current_version=0.6.13.0.296659&locale_current_version=0.6.13.0.296674&sdcontent_current_version=0.6.13.0.296659&udsound_current_version=0.6.13.0.296659&game_id=WOWS.ASIA.PRODUCTION
