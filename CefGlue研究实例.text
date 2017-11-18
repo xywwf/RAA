@@ -1,0 +1,24 @@
+本总结主要针对于WPF嵌入Xilium.CefGlue
+Xilium.CefGlue WPF嵌入.源码修改:
+
+1-关于CEF加载路径问题.
+修改:Load(null);
+为Load(Directory.GetCurrentDirectory()+"\\cef\\");Directory.GetCurrentDirectory()+"\\cef\\"
+可以为自己定义的目录.
+
+2-HASH API错误.修改编译设置平台为x86.
+
+2-屏蔽超级链接弹窗
+修改代码:
+ protected virtual bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref bool noJavascriptAccess)
+        {
+           
+            return false;
+        }
+为:
+ protected virtual bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref bool noJavascriptAccess)
+        {
+           
+            return true;
+        }
+修改完毕后仅仅不再弹出弹窗.但是主browser并不加载超级链接地址
