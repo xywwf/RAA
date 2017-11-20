@@ -8,7 +8,7 @@ Xilium.CefGlue WPF嵌入.源码修改:
 
 2-HASH API错误.修改编译设置平台为x86.
 
-2-屏蔽超级链接弹窗
+2-屏蔽超级链接弹窗 file:CefLifeSpanHandler.cs
 修改代码:
  protected virtual bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref bool noJavascriptAccess)
         {
