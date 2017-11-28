@@ -76,7 +76,7 @@
         /// <exception cref="InvalidOperationException"></exception>
         public static void Load()
         {
-            Load(null);
+            Load(System.IO.Directory.GetCurrentDirectory() + "\\Cef\\");
         }
 
         /// <summary>
