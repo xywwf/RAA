@@ -1,0 +1,37 @@
+
+
+!################Whitelist Start################
+@@||aliyun.com
+@@||baidu.com
+!--@@||bing.com
+@@||chinaso.com
+@@||chinaz.com
+@@|http://nrch.culture.tw/
+!--ISP cache works sometimes, verified at drpeng + gehua.
+@@||dl.google.com
+@@||kh.google.com
+@@||fonts.googleapis.com
+@@||storage.googleapis.com
+@@||cn.gravatar.com
+@@||csi.gstatic.com
+@@||fonts.gstatic.com
+@@||haosou.com
+@@||jd.com
+@@||jike.com
+@@||http2.golang.org
+@@||gov.cn
+@@||qq.com
+@@||sina.cn
+@@||sina.com.cn
+@@||sogou.com
+@@||so.com
+@@||soso.com
+@@||taobao.com
+@@||uluai.com.cn
+@@||weibo.com
+@@||yahoo.cn
+@@||youdao.com
+@@||zhongsou.com
+@@|http://ime.baidu.jp
+!################Whitelist End##################
+!---------------------EOF-----------------------
