@@ -14,17 +14,17 @@
         "new_updata_url_8": "https://sea.moe.sh/update-sea/RAA/Updata/{0}"
     },
     [
-        {
+       {
             "Lang_name": "zh_cn",
             "Lang_File_SHA256": "DD9F25F5D48FB06D7D56B0D7163995B6A60F6F36303EEF801876D173F05FBC69"
         },
         {
             "Lang_name": "zh_tw",
-            "Lang_File_SHA256": "C74FEC2401A1B99F5295675765E932A833760EF173F6A8181451033C58BC8484"
+            "Lang_File_SHA256": "FB36A95AB122D450A79BAEE3DE800274B89F161B6DCF6166961513538BA28060"
         },
         {
             "Lang_name": "en",
-            "Lang_File_SHA256": "10C4722946E1BF50EC80A883277DAA5A853A283A9DA314861B20B3F1125405B5"
+            "Lang_File_SHA256": "3860F1E8B7106D913FEEC6D978BD7A29F4C9B5C3306D7836C6D00611DAC2B8A2"
         },
         {
             "Lang_name": "ja_jp",
