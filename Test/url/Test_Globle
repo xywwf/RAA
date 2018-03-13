@@ -1,0 +1,72 @@
+[
+    {
+        "language_data_url_head": "https://raw.githubusercontent.com/Lee02/RAA/master/Test/Language/",
+        "log": "https://sea.moe.sh/update-sea/RAA/log.txt"
+    },
+    {
+        "new_updata_url_1": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_2": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_3": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_4": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_5": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_6": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_7": "https://sea.moe.sh/update-sea/RAA/Updata/{0}",
+        "new_updata_url_8": "https://sea.moe.sh/update-sea/RAA/Updata/{0}"
+    },
+    [
+       {
+            "Lang_name": "zh_cn",
+            "Lang_File_SHA256": "DD9F25F5D48FB06D7D56B0D7163995B6A60F6F36303EEF801876D173F05FBC69"
+        },
+        {
+            "Lang_name": "zh_tw",
+            "Lang_File_SHA256": "FB36A95AB122D450A79BAEE3DE800274B89F161B6DCF6166961513538BA28060"
+        },
+        {
+            "Lang_name": "en",
+            "Lang_File_SHA256": "3860F1E8B7106D913FEEC6D978BD7A29F4C9B5C3306D7836C6D00611DAC2B8A2"
+        },
+        {
+            "Lang_name": "ja_jp",
+            "Lang_File_SHA256": "25391C91338A00B922829A6C6A840816C9A95D924781E42A26B23EE4802E0BD1"
+        }
+    ],
+    [
+        1800,
+        2500,
+        3100,
+        3500,
+        3800
+    ],
+{
+"CEF_SHA256":"228A096C53223290D9EB75E1E309E1829E73BC722E2449926D7103E9C79B0605",
+"Cef_File_Down_Url_1":"http://onb8qc326.bkt.clouddn.com/Cef-17-12-11.7z"
+},
+{
+	"Player_Stats_Asia_Url":"https://profile.worldofwarships.asia/",
+	"Plauer_Stats_Us_Url":"https://profile.worldofwarships.com/",
+	"Player_Stats_Eu_Url":"https://profile.worldofwarships.eu/",
+	"Player_Statas_RU_Url":"https://profile.worldofwarships.ru/",
+	"Player_Statas_CNS_Url":"https://wsid-6700200.worldofwarships.cn/",
+	"Player_Statas_CNN_Url":"https://wsid-6700100.worldofwarships.cn/"
+},
+{
+    "Player_Culb_Asia_Url":"https://clans.worldofwarships.asia/clans/gateway/wows/search",
+	"Plauer_Culb_Us_Url":"https://clans.worldofwarships.com/clans/gateway/wows/search",
+	"Player_Culb_Eu_Url":"https://clans.worldofwarships.eu/clans/gateway/wows/search",
+	"Player_Culb_RU_Url":"https://clans.worldofwarships.ru/clans/gateway/wows/search",
+	"Player_Culb_CNS_Url":"https://clans-south.worldofwarships.cn/clans/gateway/wows/search",
+	"Player_Culb_CNN_Url":"https://clans-north.worldofwarships.cn/clans/gateway/wows/search"
+},
+{
+ "Sea_Group_Url":"https://sea-group.org",
+ "shipTree":"http://wowsft.com"
+},
+{
+	"Wows_Wiki_Asia_Url":"http://wiki.wargaming.net/en/World_of_Warships",
+	"Wows_Wiki_US_Url":"http://wiki.wargaming.net/en/World_of_Warships"
+},
+{
+ "Comprehensive_Efficiency":"https://worldofwarships.com.cn/"
+},
+]
