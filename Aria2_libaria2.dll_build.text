@@ -1,0 +1,111 @@
+Windows中Aria2动态编译和使用
+介绍
+Aria2 是一个轻量的多协议多源命令行下载工具，支持 HTTP/HTTPS, FTP, SFTP, BItTorrent, Metalink。并提供 JSON-RPC 和 XML-RPC 接口调用。
+
+总而言之，Aria2 是一个开源的下载库，可以集成到程序中获得下载功能
+
+编译
+Aria2 需要用到 mingw-w64 的交叉编译工具链来编译出来 Windows 下的二进制，所以要首先安装一个 Linux 系统，推荐用 Ubuntu
+新建一个 setup.sh 脚本，来执行环境的安装和相关依赖库的编译
+
+#! /bin/bash
+
+# 改成 x86_64-w64-mingw32 来编译64位版本
+export HOST=i686-w64-mingw32
+
+# It would be better to use nearest ubuntu archive mirror for faster
+# downloads.
+# RUN sed -ie 's/archive\.ubuntu/jp.archive.ubuntu/g' /etc/apt/sources.list
+# 安装编译环境
+apt-get update && \
+apt-get install -y make binutils autoconf automake autotools-dev libtool pkg-config git curl dpkg-dev gcc-mingw-w64 autopoint libcppunit-dev libxml2-dev libgcrypt11-dev lzip
+
+# 下载依赖库
+if [ ! -f "gmp-6.1.2.tar.lz" ]; then 
+	curl -L -O https://gmplib.org/download/gmp/gmp-6.1.2.tar.lz 
+fi
+
+if [ ! -f "expat-2.2.0.tar.bz2" ]; then 
+	curl -L -O http://downloads.sourceforge.net/project/expat/expat/2.2.0/expat-2.2.0.tar.bz2
+fi
+
+if [ ! -f "sqlite-autoconf-3160200.tar.gz" ]; then 
+	curl -L -O https://www.sqlite.org/2017/sqlite-autoconf-3160200.tar.gz
+fi
+
+if [ ! -f "zlib-1.2.11.tar.gz" ]; then 
+	curl -L -O http://zlib.net/zlib-1.2.11.tar.gz
+fi
+
+if [ ! -f "c-ares-1.12.0.tar.gz" ]; then 
+	curl -L -O https://c-ares.haxx.se/download/c-ares-1.12.0.tar.gz
+fi
+
+if [ ! -f "libssh2-1.8.0.tar.gz" ]; then 
+	curl -L -O http://libssh2.org/download/libssh2-1.8.0.tar.gz
+fi
+
+# 动态编译 gmp
+tar xf gmp-6.1.2.tar.lz && \
+cd gmp-6.1.2 && \
+./configure --enable-shared --disable-static --prefix=/usr/local/$HOST --host=$HOST --disable-cxx --enable-fat CFLAGS="-mtune=generic -O2 -g0" && \
+make install
+
+# 动态编译 expat
+cd ..
+tar xf expat-2.2.0.tar.bz2 && \
+cd expat-2.2.0 && \
+./configure --enable-shared --disable-static --prefix=/usr/local/$HOST --host=$HOST --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` && \
+make install
+
+# 动态编译 sqlite3
+cd ..
+tar xf sqlite-autoconf-3160200.tar.gz && cd sqlite-autoconf-3160200 && \
+./configure --enable-shared --disable-static --prefix=/usr/local/$HOST --host=$HOST --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` && \
+make install
+
+# 动态编译 zlib
+cd ..
+tar xf zlib-1.2.11.tar.gz && \
+cd zlib-1.2.11
+export BINARY_PATH=/usr/local/$HOST/bin
+export INCLUDE_PATH=/usr/local/$HOST/include
+export LIBRARY_PATH=/usr/local/$HOST/lib
+make install -f win32/Makefile.gcc PREFIX=$HOST- SHARED_MODE=1
+
+# 动态编译 c-ares
+cd ..
+tar xf c-ares-1.12.0.tar.gz && \
+cd c-ares-1.12.0 && \
+./configure --enable-shared --disable-static --without-random --prefix=/usr/local/$HOST --host=$HOST --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` LIBS="-lws2_32" && \
+make install
+
+# 动态编译 libssh2
+cd ..
+tar xf libssh2-1.8.0.tar.gz && \
+cd libssh2-1.8.0 && \
+./configure --enable-shared --disable-static --prefix=/usr/local/$HOST --host=$HOST --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` --without-openssl --with-wincng LIBS="-lws2_32" && \
+make install
+
+下载 Aria2 代码并解压，修改 aria2\mingw-config 文件，增加 --enable-libaria2 编译选项来生成 libaria2 库，并修改ARIA2_STATIC=no 来关闭静态编译，如果想在 windows xp 上运行，则还要将 --with-libssh2 改成 --without-libssh2，否则会出现 bcrypt.dll 缺失报错
+
+新建一个 build.sh 来编译 Aria2 库
+
+#! /bin/bash
+
+# 改成 x86_64-w64-mingw32 来编译64位版本
+export HOST=i686-w64-mingw32
+
+cd aria2 && autoreconf -i && ./mingw-config && make install && $HOST-strip /usr/local/$HOST/bin/libaria2-0.dll
+编译完成后，将两个 gcc 的运行库复制到 /usr/local/i686-w64-mingw32/bin 中，路径为 /usr/lib/gcc/i686-w64-mingw32/5.3-win32/libgcc_s_sjlj-1.dll 和 /usr/lib/gcc/i686-w64-mingw32/5.3-win32/libstdc++-6.dll
+最终，把 /usr/local/i686-w64-mingw32 文件夹复制到 Windows 中，这个文件夹中的文件就是 Windows 所需要的二进制
+使用
+编译完成后，aria2c.exe 可以运行，但是我们自己的程序还无法加载 libaria2-0.dll，原因是这个库接口的导出方式的问题，要想在程序中能够使用 libaria2-0.dll 的接口，还需要对 aria2\src\includes\aria2\aria2.h 和 arai2\src\aria2api.cc 中的接口进行修改，将所有接口都加上 extern "C" 来导出，并且修改接口中的 STL 和 自定义class 参数，去掉或改成指针的方式，例如
+// int libraryInit();
+// 改成
+extern "C" int libraryInit();
+
+// Session* sessionNew(const KeyVals& options, const SessionConfig& config);
+// 改成
+extern "C" Session* sessionNewEx(bool keepRunning, bool useSignalHandler, DownloadEventCallback downloadEventCallback, void* userData);
+修改完成后重新编译，然后在程序中用 LoadLibrary 和 GetProcAddresss 来获取各个接口，就可以使用 libaria2 的下载功能了
